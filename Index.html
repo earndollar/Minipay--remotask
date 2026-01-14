@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniPay Remotask</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
+    body { background-color: #fff; color: #111; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; }
+
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; border-bottom: 1px solid #eee; }
+    header img { height: 50px; }
+    
+    section { padding: 2rem; max-width: 900px; margin: auto; }
+
+    h1, h2 { margin-bottom: 1rem; }
+    p { margin-bottom: 1rem; }
+
+    .btn-primary { 
+      background-color: #0a74da; color: #fff; padding: 0.8rem 1.5rem; border: none; border-radius: 5px; font-weight: 500; transition: 0.3s; 
+    }
+    .btn-primary:hover { background-color: #095bb5; }
+
+    /* Home Section */
+    #home { text-align: center; padding-top: 4rem; }
+    #home p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+    /* Instructions */
+    #instructions ol { padding-left: 1.5rem; }
+    #instructions li { margin-bottom: 1rem; }
+
+    /* Registration Form */
+    #registration form { display: flex; flex-direction: column; gap: 1rem; }
+    #registration input { padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; }
+    #registration button { align-self: flex-start; }
+
+    /* Footer */
+    footer { text-align: center; padding: 1.5rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #555; }
+
+    /* Pop-up Marketing Notifications */
+    .popup-container { position: fixed; bottom: 20px; right: 20px; width: 280px; z-index: 1000; }
+    .popup { background-color: #0a74da; color: #fff; padding: 1rem 1.2rem; border-radius: 8px; margin-top: 10px; display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(20px); animation: fadeIn 0.5s forwards; }
+    .popup img { width: 30px; height: 30px; }
+    .popup span { font-size: 0.95rem; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeOut { to { opacity: 0; transform: translateY(20px); } }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 1rem; }
+      .popup-container { width: 90%; bottom: 10px; right: 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="logo-placeholder.png" alt="MiniPay Remotask Logo">
+  </header>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h1>MiniPay Remotask</h1>
+    <h2>Your gateway to flexible online earning opportunities</h2>
+    <p>Complete tasks, grow your skills, and earn rewards with MiniPay Remotask. Join thousands of members building their online income today.</p>
+    <a href="YOUR_MINIPAY_LINK_HERE" class="btn-primary">Install MiniPay App</a>
+    <p style="font-size:0.9rem; margin-top:0.5rem;">Click the MiniPay link to install the app, then return to paste your shareable link and complete registration.</p>
+  </section>
+
+  <!-- Step-by-Step Instructions Section -->
+  <section id="instructions">
+    <h2>How It Works</h2>
+    <ol>
+      <li>Open the MiniPay app using the provided link.</li>
+      <li>Go to the MiniPay homepage and click <strong>Pay</strong>.</li>
+      <li>Generate your shareable link after depositing the $5 processing fee.</li>
+      <li>Copy the shareable link.</li>
+      <li>Return to MiniPay Remotask, paste the shareable link into the registration form, and complete all remaining fields.</li>
+    </ol>
+    <p style="color:red; font-weight:500;">Important: Do not share your shareable link with anyone.</p>
+  </section>
+
+  <!-- Registration Form Section -->
+  <section id="registration">
+    <h2>Complete Your Registration</h2>
+    <form id="registrationForm">
+      <input type="text" name="fullname" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Gmail Address" required>
+      <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required>
+      <input type="text" name="minipayLink" placeholder="MiniPay Shareable Link" required>
+      <button type="submit" class="btn-primary">Complete Registration</button>
+    </form>
+    <p id="confirmationMessage" style="margin-top:1rem; color:green; display:none;">Thank you for registering! You will receive further instructions via Gmail or WhatsApp.</p>
+  </section>
+
+  <!-- Pop-up Marketing Notifications -->
+  <div class="popup-container" id="popupContainer"></div>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 MiniPay Remotask – Build your online income responsibly.
+  </footer>
+
+  <script>
+    // Registration Form Submission
+    const form = document.getElementById('registrationForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      confirmationMessage.style.display = 'block';
+      form.reset();
+    });
+
+    // Pop-up Marketing Rotation
+    const popupContainer = document.getElementById('popupContainer');
+    const popupMessages = [
+      "Earn with MiniPay Remotask – start completing tasks today!",
+      "Join our growing community of online workers now.",
+      "Your skills, your schedule, your earnings – discover MiniPay Remotask.",
+      "Complete tasks like academic writing, transcription, and data analysis.",
+      "Grow your skills while earning – join MiniPay Remotask now.",
+      "Start working today and explore online opportunities.",
+      "MiniPay Remotask – flexible tasks, reliable platform.",
+      "Unlock new opportunities by joining our active community.",
+      "Your next task is waiting – take action with MiniPay Remotask.",
+      "Discover how easy it is to complete tasks and build experience.",
+      "Join thousands of members already growing their online skills.",
+      "MiniPay Remotask – your gateway to online income and learning.",
+      "Work on tasks at your own pace and convenience.",
+      "Stay productive and earn with MiniPay Remotask every day.",
+      "Take your skills online – start contributing and growing today.",
+      "A wide variety of tasks are ready for you to complete.",
+      "Your efforts, your rewards – explore MiniPay Remotask now.",
+      "Start small, grow fast – opportunities await in MiniPay Remotask.",
+      "Complete tasks, gain experience, and expand your skills.",
+      "MiniPay Remotask – empowering members to earn online safely."
+    ];
+
+    let popupIndex = 0;
+
+    function showPopup() {
+      const popup = document.createElement('div');
+      popup.classList.add('popup');
+      popup.innerHTML = `<img src="logo-placeholder.png" alt="Logo"><span>${popupMessages[popupIndex]}</span><small style="margin-left:auto;font-size:0.7rem;opacity:0.7;">Demo / Sample Data</small>`;
+      popupContainer.appendChild(popup);
+
+      setTimeout(() => {
+        popup.style.animation = 'fadeOut 0.5s forwards';
+        setTimeout(() => popup.remove(), 500);
+      }, 10000 + Math.random() * 5000); // 10-15 seconds display
+
+      popupIndex = (popupIndex + 1) % popupMessages.length;
+      setTimeout(showPopup, 12000); // rotate continuously
+    }
+
+    showPopup();
+  </script>
+
+</body>
+  </html>
